@@ -6,15 +6,15 @@
   "scripts": {
     "start_dev": "nodemon index.js",
     "start": "node index.js",
-    "test": "NODE_ENV=test jest --silent --runInBand --testEnvironment=node --detectOpenHandles --runInBand --forceExit"
+    "test": "NODE_ENV=test & clear & jest --coverage --runInBand --testEnvironment=node --detectOpenHandles --runInBand --forceExit"
   },
   "author": "Mai Thanh Danh",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
     "cookie-parser": "^1.4.5",
     "cookies": "^0.8.0",
     "cors": "^2.8.5",
+    "express": "^4.17.1",
     "express-validator": "^6.6.1",
     "mongoose": "^5.10.7",
     "morgan": "^1.10.0",
@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "dotenv": "^8.2.0",
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.6",
+    "supertest": "^6.0.1"
   }
 }
