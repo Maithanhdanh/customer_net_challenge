@@ -26,6 +26,6 @@ exports.connect = () => {
 exports.initialize= async () => {
     const uid = 1
     const newCustomer = await Customer.checkToCreateCustomer(uid)
-    if(!newCustomer) return logger.info('Initialized database')
+    if(!newCustomer) return logger.info('Add sample data to database')
 	logger.info('Initialized database done...')
 }

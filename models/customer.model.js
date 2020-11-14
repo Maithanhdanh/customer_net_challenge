@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 /**
  * schema of activity
- * @param {String} event - customer activity
+ * @param {String} event customer activity
  * @return {Object} structure of search / view item
  */
 class ActivitySchema {
@@ -21,8 +21,8 @@ class ActivitySchema {
 
 /**
  * activities structure
- * @param {Array} search - customer's search history
- * @param {Array} view - customer's view history
+ * @param {Array} search customer's search history
+ * @param {Array} view customer's view history
  */
 class activities {
 	constructor(search = [], view = []) {
@@ -45,6 +45,9 @@ const customerSchema = new Schema(
  * Methods
  */
 customerSchema.method({
+	/**
+	 * remove non-public info
+	 */
 	transform() {
 		const transformed = {}
 		const fields = ["uid", "activity"]
@@ -64,8 +67,8 @@ customerSchema.statics = {
 	/**
 	 * Check to create new customer
 	 *
-	 * @param {String} uid - customer's uid.
-	 * @returns {Promise<Customer, error>}
+	 * @param {String} uid customer's uid.
+	 * @returns {Promise<Customer, Error>}
 	 */
 	async checkToCreateCustomer(uid) {
 		try {
@@ -78,14 +81,14 @@ customerSchema.statics = {
 
 			return doc
 		} catch (error) {
-			throw error
+			return error.message
 		}
 	},
 	/**
 	 * Get customer by uid
 	 *
-	 * @param {String} uid - customer's uid.
-	 * @returns {Promise<Customer, error>}
+	 * @param {String} uid customer's uid.
+	 * @returns {Promise<Customer, Error>}
 	 */
 	async getCustomerUid(uid) {
 		try {
@@ -93,20 +96,19 @@ customerSchema.statics = {
 			const customerModel = await this.findOne({ uid }).exec()
 
 			if (!customerModel) return null
-			//transform data
 
 			return customerModel
 		} catch (error) {
-			throw error
+			return error.message
 		}
 	},
 
 	/**
-	 * Get customer and update
+	 * Get customer by uid and update
 	 *
 	 * @param {String} uid customer's uid.
-	 * @param {String} restParameter searchItem/viewItem - customer's activity.
-	 * @returns {Promise<Customer, error>}
+	 * @param {object} activity searchItem/viewItem - customer's activity.
+	 * @returns {Promise<Customer, Error>}
 	 */
 	async getByUidAndUpdate(uid, { ...activity }) {
 		try {
@@ -128,12 +130,19 @@ customerSchema.statics = {
 			const updatedDoc = await this.update(customerModel.id, {
 				activity: customerModel.activity,
 			})
-			
+
 			return updatedDoc
 		} catch (error) {
-			throw error
+			return error.message
 		}
 	},
+	/**
+	 * Get customer by objectId and update
+	 *
+	 * @param {String} id ObjectId.
+	 * @param {object} data searchItem/viewItem - customer's activity.
+	 * @returns {Promise<Customer, Error>}
+	 */
 	async update(id, { ...data }) {
 		try {
 			let user
@@ -150,10 +159,8 @@ customerSchema.statics = {
 
 				return user
 			}
-
-			return null
 		} catch (error) {
-			return error
+			return error.message
 		}
 	},
 }

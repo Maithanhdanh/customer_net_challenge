@@ -135,7 +135,7 @@ describe("customer query", () => {
 describe("Add multiple events", () => {
 	var viewItem = "42109"
 	var searchItem = "name=asdf&price=0%2C100000&color=red"
-	
+
 	beforeAll(async () => {
 		await Customer.getByUidAndUpdate(uid, { viewItem })
 		await Customer.getByUidAndUpdate(uid, { viewItem })

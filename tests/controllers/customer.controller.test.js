@@ -45,25 +45,25 @@ describe("Customer", () => {
 		})
 
 		it("failed => missing uid", async () => {
-            const res = await request(server).get("/customer/").expect(400)
-            expect(res.body.error).toBe(true)
-        })
-        it("failed => invalid uid", async () => {
-            var uid = 2
+			const res = await request(server).get("/customer/").expect(400)
+			expect(res.body.error).toBe(true)
+		})
+		it("failed => invalid uid", async () => {
+			var uid = 2
 			const res = await request(server)
 				.get(`/customer/`)
 				.set("Cookie", `uid=${uid}`)
 				.expect(400)
 
 			expect(res.body.error).toBe(true)
-			expect(res.body.response).toBe('invalid uid')
+			expect(res.body.response).toBe("invalid uid")
 		})
 		it("failed => invalid uid", async () => {
 			const res = await request(server)
 				.get("/customer/")
 				.set("Cookie", `uid=`)
-                .expect(400)
-                expect(res.body.error).toBe(true)
+				.expect(400)
+			expect(res.body.error).toBe(true)
 		})
 	})
 
@@ -80,8 +80,8 @@ describe("Customer", () => {
 			expect(Object.keys(res.body.response.activity).length).toBe(2)
 			expect(res.body.response.activity.search.length).toBe(1)
 			expect(res.body.response.activity.search[0].query).toBe(queryString)
-        })
-        
+		})
+
 		it("success => add another search event", async () => {
 			const res = await request(server)
 				.get(`/customer/add_search`)
@@ -104,9 +104,9 @@ describe("Customer", () => {
 				.expect(400)
 
 			expect(res.body.error).toBe(true)
-        })
-        it("failed => invalid uid", async () => {
-            var uid = 2
+		})
+		it("failed => invalid uid", async () => {
+			var uid = 2
 			const res = await request(server)
 				.get(`/customer/add_search`)
 				.set("Cookie", `uid=${uid}`)
@@ -114,7 +114,7 @@ describe("Customer", () => {
 				.expect(400)
 
 			expect(res.body.error).toBe(true)
-			expect(res.body.response).toBe('invalid uid')
+			expect(res.body.response).toBe("invalid uid")
 		})
 		it("failed => missing queryString", async () => {
 			const res = await request(server)
@@ -123,28 +123,28 @@ describe("Customer", () => {
 				.expect(400)
 			expect(res.body.error).toBe(true)
 		})
-    })
-    
+	})
+
 	describe("/add_view => add view event", () => {
-        beforeAll(async () => {
-            await Customer.deleteMany({})
-            var newCustomer = new Customer({ uid })
-	        await newCustomer.save()
-        })
+		beforeAll(async () => {
+			await Customer.deleteMany({})
+			var newCustomer = new Customer({ uid })
+			await newCustomer.save()
+		})
 		it("success", async () => {
 			const res = await request(server)
 				.get(`/customer/add_view`)
 				.set("Cookie", `uid=${uid}`)
 				.send({ productId: productId })
-                .expect(200)
+				.expect(200)
 			expect(res.body.error).toBe(false)
 			expect(Object.keys(res.body.response).length).toBe(2)
 			expect(res.body.response.uid).toBe(uid.toString())
 			expect(Object.keys(res.body.response.activity).length).toBe(2)
 			expect(res.body.response.activity.view.length).toBe(1)
 			expect(res.body.response.activity.view[0].productId).toBe(productId)
-        })
-        
+		})
+
 		it("success => add another view event", async () => {
 			const res = await request(server)
 				.get(`/customer/add_view`)
@@ -169,7 +169,7 @@ describe("Customer", () => {
 			expect(res.body.error).toBe(true)
 		})
 		it("failed => invalid uid", async () => {
-            var uid = 2
+			var uid = 2
 			const res = await request(server)
 				.get(`/customer/add_view`)
 				.set("Cookie", `uid=${uid}`)
@@ -177,7 +177,7 @@ describe("Customer", () => {
 				.expect(400)
 
 			expect(res.body.error).toBe(true)
-			expect(res.body.response).toBe('invalid uid')
+			expect(res.body.response).toBe("invalid uid")
 		})
 		it("failed => missing queryString", async () => {
 			const res = await request(server)
