@@ -2,7 +2,7 @@ const logger = require("./config/logger")
 const server = require("./config/express")
 const mongoose = require("./config/mongoose")
 const { register, unregister } = require("./helpers/registry.js")
-const results = require("./helpers/remoteIp")
+const results = require("./helpers/remoteIP")
 const ENV_VAR = require("./config/vars")
 
 mongoose.connect()
