@@ -70,10 +70,11 @@ describe("Customer", () => {
 	describe("/add_search => add search event", () => {
 		it("success", async () => {
 			const res = await request(server)
-				.get(`/customer/add_search`)
+				.post('/customer/add_search')
 				.set("Cookie", `uid=${uid}`)
 				.send({ queryString: queryString })
 				.expect(200)
+
 			expect(res.body.error).toBe(false)
 			expect(Object.keys(res.body.response).length).toBe(2)
 			expect(res.body.response.uid).toBe(uid.toString())
@@ -84,7 +85,7 @@ describe("Customer", () => {
 
 		it("success => add another search event", async () => {
 			const res = await request(server)
-				.get(`/customer/add_search`)
+				.post('/customer/add_search')
 				.set("Cookie", `uid=${uid}`)
 				.send({ queryString: queryString })
 				.expect(200)
@@ -98,7 +99,7 @@ describe("Customer", () => {
 
 		it("failed => missing uid", async () => {
 			const res = await request(server)
-				.get(`/customer/add_search`)
+				.post('/customer/add_search')
 				.set("Cookie", `uid=`)
 				.send({ queryString: queryString })
 				.expect(400)
@@ -108,7 +109,7 @@ describe("Customer", () => {
 		it("failed => invalid uid", async () => {
 			var uid = 2
 			const res = await request(server)
-				.get(`/customer/add_search`)
+				.post('/customer/add_search')
 				.set("Cookie", `uid=${uid}`)
 				.send({ queryString: queryString })
 				.expect(400)
@@ -118,7 +119,7 @@ describe("Customer", () => {
 		})
 		it("failed => missing queryString", async () => {
 			const res = await request(server)
-				.get(`/customer/add_search`)
+				.post('/customer/add_search')
 				.set("Cookie", `uid=${uid}`)
 				.expect(400)
 			expect(res.body.error).toBe(true)
@@ -133,7 +134,7 @@ describe("Customer", () => {
 		})
 		it("success", async () => {
 			const res = await request(server)
-				.get(`/customer/add_view`)
+				.post('/customer/add_view')
 				.set("Cookie", `uid=${uid}`)
 				.send({ productId: productId })
 				.expect(200)
@@ -147,7 +148,7 @@ describe("Customer", () => {
 
 		it("success => add another view event", async () => {
 			const res = await request(server)
-				.get(`/customer/add_view`)
+				.post('/customer/add_view')
 				.set("Cookie", `uid=${uid}`)
 				.send({ productId: productId })
 				.expect(200)
@@ -161,7 +162,7 @@ describe("Customer", () => {
 
 		it("failed => missing uid", async () => {
 			const res = await request(server)
-				.get(`/customer/add_view`)
+				.post('/customer/add_view')
 				.set("Cookie", `uid=`)
 				.send({ productId: productId })
 				.expect(400)
@@ -171,7 +172,7 @@ describe("Customer", () => {
 		it("failed => invalid uid", async () => {
 			var uid = 2
 			const res = await request(server)
-				.get(`/customer/add_view`)
+				.post('/customer/add_view')
 				.set("Cookie", `uid=${uid}`)
 				.send({ productId: productId })
 				.expect(400)
@@ -181,7 +182,7 @@ describe("Customer", () => {
 		})
 		it("failed => missing queryString", async () => {
 			const res = await request(server)
-				.get(`/customer/add_view`)
+				.post('/customer/add_view')
 				.set("Cookie", `uid=${uid}`)
 				.expect(400)
 			expect(res.body.error).toBe(true)

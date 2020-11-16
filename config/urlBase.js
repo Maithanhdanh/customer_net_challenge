@@ -1,0 +1,23 @@
+const URL_BASE = {
+	REGISTRY: "/registry",
+}
+
+const ROUTES_REGISTRY = {
+	REGISTER: "/register",
+	UNREGISTER: "/unregister",
+}
+
+const ROUTE_MAP = {
+	REGISTRY: {
+		REGISTER: {
+			PATH: URL_BASE.REGISTRY + ROUTES_REGISTRY.REGISTER,
+			METHOD: "POST",
+		},
+		UNREGISTER: {
+			PATH: URL_BASE.REGISTRY + ROUTES_REGISTRY.UNREGISTER,
+			METHOD: "POST",
+		},
+	},
+}
+
+module.exports = ROUTE_MAP

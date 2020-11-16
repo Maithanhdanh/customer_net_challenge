@@ -6,11 +6,12 @@
   "scripts": {
     "start_dev": "nodemon index.js",
     "start": "node index.js",
-    "test": "NODE_ENV=test & clear & jest --coverage --runInBand --testEnvironment=node --detectOpenHandles --runInBand --forceExit"
+    "test": "NODE_ENV=test & clear & jest --verbose --coverage --runInBand --testEnvironment=node --detectOpenHandles --runInBand --forceExit"
   },
   "author": "Mai Thanh Danh",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.0",
     "cookie-parser": "^1.4.5",
     "cookies": "^0.8.0",
     "cors": "^2.8.5",

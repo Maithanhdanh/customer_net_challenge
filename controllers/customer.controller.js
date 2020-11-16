@@ -1,7 +1,7 @@
 const responseReturn = require("../response/responseReturn")
 const { Customer } = require("../models/customer.model")
 const { validationResult } = require("express-validator")
-
+const resReturn = new responseReturn()
 /**
  * Get customer by objectId and update
  *
@@ -11,7 +11,6 @@ const { validationResult } = require("express-validator")
  */
 exports.getUser = async (req, res, next) => {
 	const errors = validationResult(req)
-	let resReturn = new responseReturn()
 	if (!errors.isEmpty()) {
 		return resReturn.failure(req, res, 400, errors.array())
 	}
@@ -38,7 +37,6 @@ exports.getUser = async (req, res, next) => {
  */
 exports.addSearch = async (req, res, next) => {
 	const errors = validationResult(req)
-	let resReturn = new responseReturn()
 	if (!errors.isEmpty()) {
 		resReturn.failure(req, res, 400, errors.array())
 		return
@@ -69,7 +67,6 @@ exports.addSearch = async (req, res, next) => {
  */
 exports.addView = async (req, res, next) => {
 	const errors = validationResult(req)
-	let resReturn = new responseReturn()
 	if (!errors.isEmpty()) {
 		resReturn.failure(req, res, 400, errors.array())
 		return

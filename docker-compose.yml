@@ -5,6 +5,6 @@ services:
     container_name: customer
     restart: unless-stopped
     env_file:
-      - .env
+      - docker.env
     ports:
       - "5000:5000"
