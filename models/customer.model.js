@@ -24,7 +24,7 @@ class ActivitySchema {
  * @param {Array} search customer's search history
  * @param {Array} view customer's view history
  */
-class activities {
+class Activities {
 	constructor(search = [], view = []) {
 		this.search = search
 		this.view = view
@@ -34,7 +34,7 @@ class activities {
 const customerSchema = new Schema(
 	{
 		uid: { type: String, required: [true, "invalid uid"] },
-		activity: { type: Object, default: new activities() },
+		activity: { type: Object, default: new Activities() },
 	},
 	{
 		timestamps: true,
